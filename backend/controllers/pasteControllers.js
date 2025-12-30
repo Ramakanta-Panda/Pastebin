@@ -44,7 +44,7 @@ export const createPaste = async (req, res) => {
  * GET /api/pastes/:id
  */
 export const getPasteApi = async (req, res) => {
-  const paste = await Paste.findById(req.params.id);
+  const paste = await Paste.findById(req.params.id.trim());
   if (!paste) return res.status(404).json({ error: "Not found" });
 
   const currentTime = now(req);
@@ -74,7 +74,7 @@ export const getPasteApi = async (req, res) => {
  * GET /p/:id
  */
 export const getPasteHtml = async (req, res) => {
-  const paste = await Paste.findById(req.params.id);
+  const paste = await Paste.findById(req.params.id.trim());
   if (!paste) return res.status(404).send("Not found");
 
   const currentTime = now(req);
